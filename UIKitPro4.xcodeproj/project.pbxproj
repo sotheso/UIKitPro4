@@ -13,6 +13,7 @@
 		9B5F21962C482FB100CE128E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F21952C482FB100CE128E /* Base */; };
 		9B5F21982C482FB200CE128E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F21972C482FB200CE128E /* Assets.xcassets */; };
 		9B5F219B2C482FB200CE128E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F219A2C482FB200CE128E /* Base */; };
+		9B5F21A32C4831B800CE128E /* start.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F21A22C4831B800CE128E /* start.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9B5F21972C482FB200CE128E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B5F219A2C482FB200CE128E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B5F219C2C482FB200CE128E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B5F21A22C4831B800CE128E /* start.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = start.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				9B5F21942C482FB100CE128E /* Main.storyboard */,
 				9B5F21972C482FB200CE128E /* Assets.xcassets */,
 				9B5F21992C482FB200CE128E /* LaunchScreen.storyboard */,
+				9B5F21A22C4831B800CE128E /* start.txt */,
 				9B5F219C2C482FB200CE128E /* Info.plist */,
 			);
 			path = UIKitPro4;
@@ -126,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B5F21982C482FB200CE128E /* Assets.xcassets in Resources */,
+				9B5F21A32C4831B800CE128E /* start.txt in Resources */,
 				9B5F219B2C482FB200CE128E /* Base in Resources */,
 				9B5F21962C482FB100CE128E /* Base in Resources */,
 			);
