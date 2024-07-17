@@ -15,19 +15,14 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "tex") {
-            if let startWords = try? String(contentsOf: startWordsURL){
+        if let startWordsURL = Bundle.main.path(forResource: "start", ofType: "txt") {
+            if let startWords = try? String(contentsOfFile: startWordsURL){
                 allWords = startWords.components(separatedBy: "\n")
             }
-//        } else {
-//            allWords = ["Sothesom"]
-            // OR
-            if allWords.isEmpty {
-                allWords = ["Sothesom"]
-            }
+        } else {
+            allWords = ["Sothesom"]
         }
-        
-        startGame()
+            startGame()
     }
     
     func startGame() {
@@ -38,6 +33,7 @@ class ViewController: UITableViewController {
         // لود کردن کلمات
         tableView.reloadData()
     }
+        
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return useWords.count
