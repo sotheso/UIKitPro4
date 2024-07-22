@@ -135,7 +135,6 @@ class ViewController: UITableViewController {
         let misspelledRange = cheker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
         return misspelledRange.location == NSNotFound
     }
-
     
     // ارسال نوتیف محلی
     // تابع اول: امکان اجازه ارسال
