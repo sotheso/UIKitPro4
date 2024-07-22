@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class ViewController: UITableViewController {
     
@@ -14,6 +15,7 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkForPermission()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
         
@@ -134,5 +136,62 @@ class ViewController: UITableViewController {
         return misspelledRange.location == NSNotFound
     }
 
+    
+    // ارسال نوتیف محلی
+    // تابع اول: امکان اجازه ارسال
+    func checkForPermission(){
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                self.dispatchNotification()
+            case .denied:
+                return
+                // اجازه دسترسی اولیه برای ارسال نوتیف
+            case .notDetermined:
+                notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow ,error in
+                    if didAllow {
+                        self.dispatchNotification()
+                    }
+                }
+            default:
+                return
+            }
+        }
+    }
+    
+    // تابع دوم: ارسال نوتیف
+    func dispatchNotification(){
+        // شناسه پیام
+        let identifier = "my-morning-notification"
+        let title = "عنوان نوتیف"
+        let body = "کپشن نوتیف"
+        let hour = 10
+        let min = 57
+        let isdaily = true
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = .default
+        
+        let calendar = Calendar.current
+        var dateComponents = DateComponents(calendar: calendar, timeZone: TimeZone.current)
+        dateComponents.hour = hour
+        dateComponents.minute = min
+        
+        // ماشه زمان بندی
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: isdaily)
+        
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        // توضیحات:
+        // این خط کد به UNUserNotificationCenter دستور می‌دهد که تمامی درخواست‌های نوتیفیکیشنی که هنوز اجرا نشده‌اند و دارای شناسه مشخص شده (identifier) هستند را حذف کند. به این ترتیب، اطمینان حاصل می‌شود که نوتیفیکیشن تکراری با همان شناسه ارسال نخواهد شد. این کار برای جلوگیری از ایجاد چندین نوتیفیکیشن با شناسه‌های یکسان مفید است.
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
+        // این خط کد درخواست جدید نوتیفیکیشن (request) را به UNUserNotificationCenter اضافه می‌کند. این درخواست شامل محتوای نوتیفیکیشن (عنوان، متن، صدا) و ماشه زمانی برای ارسال نوتیفیکیشن است.
+        notificationCenter.add(request)
+    }
 }
 
